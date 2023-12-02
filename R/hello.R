@@ -15,6 +15,18 @@
 #   Test Package:              'Ctrl + Shift + T'
 
 setup_package <- function() {
+  file_list <- list.files(path = "../aos-data/", pattern = "\\.ods$", full.names = TRUE)
+  for(file_path in file_list) {
+    # Extract the base name without extension
+    file_name <- tools::file_path_sans_ext(basename(file_path))
+
+    # Read the .ods file into a data frame
+    data_frame <- data.frame(read_ods(file_path))
+
+    # Assign the data frame to a variable named after the file
+    assign(file_name, data_frame, envir = .GlobalEnv)
+  }
+
   print("Hello, world!")
   usethis::use_data( batteryLife , overwrite=TRUE)
   usethis::use_data( batteryLife2 , overwrite=TRUE)
