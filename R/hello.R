@@ -14,6 +14,8 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
+library(readODS)
+
 setup_package <- function() {
   file_list <- list.files(path = "../aos-data/", pattern = "\\.ods$", full.names = TRUE)
   for(file_path in file_list) {
